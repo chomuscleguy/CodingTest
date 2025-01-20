@@ -7,10 +7,9 @@ int main(void) {
     string str;
     int n;
     cin >> str >> n;
-    while(n>0)
+    while(n--)
     {
         cout<<str;
-        n--;
     }
     return 0;
 }
