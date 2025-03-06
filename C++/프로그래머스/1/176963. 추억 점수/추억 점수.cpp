@@ -1,26 +1,25 @@
 #include <string>
 #include <vector>
-
+#include <unordered_map>
 using namespace std;
 
-vector<int> solution(vector<string> name, vector<int> yearning, vector<vector<string>> photo)
+vector<int> solution(vector<string> name, vector<int> yearning, vector<vector<string>> photo) 
 {
-	vector<int> answer;
-	int sum = 0;
-	//tony가 있으면 다 더하기
-	for (vector<string> str : photo)
-	{
-		for (int i = 0; i < str.size(); i++)
-		{
-			for (int j = 0; j < name.size(); j++)
-			{
-				if (str[i] == name[j])
-					sum += yearning[j];
-			}
-		}
-		answer.emplace_back(sum);
-		sum = 0;
-	}
+    vector<int> answer;
 
-	return answer;
+    unordered_map<string, int> yearningMap;
+
+    for (int i = 0; i < name.size(); i++) 
+        yearningMap[name[i]] = yearning[i];
+
+    for (vector<string>& str : photo) 
+    {
+        int sum = 0;
+        for (string& person : str) 
+            if (yearningMap.find(person) != yearningMap.end())
+                sum += yearningMap[person];
+        answer.push_back(sum);
+    }
+
+    return answer;
 }
