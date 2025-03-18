@@ -1,15 +1,13 @@
 #include <vector>
 #include <iostream>
-
+#include <algorithm>
 using namespace std;
 
-vector<int> solution(vector<int> arr)
+vector<int> solution(vector<int> arr) 
 {
-    vector<int> answer;
+    arr.erase(unique(arr.begin(), arr.end()),arr.end());
 
-    for (int n : arr)
-        if (answer.empty() || answer.back() != n)
-            answer.push_back(n);
-
+    vector<int> answer = arr;
+    
     return answer;
 }
