@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int main()
+int main() 
 {
     int L;
     cin >> L;
@@ -11,13 +11,13 @@ int main()
     string str;
     cin >> str;
 
-    unsigned long long sum = 0;
-    unsigned long long power = 1;
+    unsigned long long sum = 0, power = 1, r = 31, M = 1234567891;
 
     for (int i = 0; i < L; i++) 
     {
-        sum += (str[i] - 'a' + 1) * power;
-        power *= 31;
+        sum = (sum + (str[i] - 'a' + 1) * power) % M;
+
+        power = (power * r) % M;
     }
 
     cout << sum << endl;
