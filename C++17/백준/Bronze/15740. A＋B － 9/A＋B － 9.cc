@@ -61,12 +61,12 @@ string sub(const string& A, const string& B)
 	return res;
 }
 
-bool compare(string& A, string& B)
+bool compare(const string& A, const string& B)
 {
 	if (A.size() != B.size())
 		return A.size() > B.size();
 
-	for (int i = 0; i < A.size(); i++)
+	for (size_t i = 0; i < A.size(); i++)
 		if (A[i] != B[i])
 			return A[i] > B[i];
 
@@ -95,13 +95,17 @@ string calc(string& A, string& B)
 		if (compare(A, B))
 		{
 			res = sub(A, B);
-			if (negA)
+			if (res == "0")
+				return res;
+			else if (negA)
 				res = "-" + res;
 		}
 		else
 		{
 			res = sub(B, A);
-			if (negB)
+			if (res == "0")
+				return res;
+			else if (negB)
 				res = "-" + res;
 		}
 	}
